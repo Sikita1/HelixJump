@@ -5,33 +5,33 @@ public class BallTracking : MonoBehaviour
     [SerializeField] private Vector3 _directionOffset;
     [SerializeField] private float _lenght;
 
-    [SerializeField] private Ball _ball;
-    [SerializeField] private Beam _beam;
-
     private Vector3 _cameraPosition;
     private Vector3 _minimusBallPosition;
+    
+    private Ball _ball;
+    private Beam _beam;
 
-    private void Start()
+    private void Update()
     {
-        _ball = FindObjectOfType<Ball>();
-        _beam = FindObjectOfType<Beam>();
+        if (_ball != null)
+        {
+            if (_ball.transform.position.y < _minimusBallPosition.y)
+            {
+                TrackBall();
+                _minimusBallPosition = _ball.transform.position;
+            }
+        }
+    }
 
-        //_ball = GetComponent<Ball>();
-        //_beam = GetComponent<Beam>();
+    public void Initialize(Ball ball, Beam beam)
+    {
+        _ball = ball;
+        _beam = beam;
 
         _cameraPosition = _ball.transform.position;
         _minimusBallPosition = _ball.transform.position;
 
         TrackBall();
-    }
-
-    private void Update()
-    {
-        if(_ball.transform.position.y < _minimusBallPosition.y)
-        {
-            TrackBall();
-            _minimusBallPosition = _ball.transform.position;
-        }
     }
 
     private void TrackBall()

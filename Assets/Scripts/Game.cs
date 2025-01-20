@@ -5,38 +5,37 @@ public class Game : MonoBehaviour
 {
     [SerializeField] private EndGameScreen _endGameScreen;
     [SerializeField] private WinnerScreen _winnerScreen;
+
+    [SerializeField] private BallTracking _ballTracking;
     
-    private FinishPlatform _finishPlatform;
-    private DangerSegment[] _dangerSegments;
+    private TowerBuilder _towerBuilder;
 
     private void OnEnable()
     {
         _winnerScreen.PlayButtonClicked += OnPlayButtonClick;
         _endGameScreen.RestartButtonClicked += OnRestartButtonClick;
+        _towerBuilder.Ball.GameWin += OnGameWin;
+        _towerBuilder.Ball.GameOver += OnGameOver;
     }
 
     private void OnDisable()
     {
         _winnerScreen.PlayButtonClicked -= OnPlayButtonClick;
         _endGameScreen.RestartButtonClicked -= OnRestartButtonClick;
-        _finishPlatform.GameWin -= OnGameWin;
+        _towerBuilder.Ball.GameWin -= OnGameWin;
+        _towerBuilder.Ball.GameOver -= OnGameOver;
+    }
 
-        for (int i = 0; i < _dangerSegments.Length; i++)
-            _dangerSegments[i].GameOver -= OnGameOver;
+    private void Awake()
+    {
+        _towerBuilder = new TowerBuilder();
+        _towerBuilder.Build(transform, _ballTracking);
     }
 
     private void Start()
     {
-        _finishPlatform = FindObjectOfType<FinishPlatform>();
-        _dangerSegments = FindObjectsOfType<DangerSegment>();
-
-        for (int i = 0; i < _dangerSegments.Length; i++)
-            _dangerSegments[i].GameOver += OnGameOver;
-
-        _finishPlatform.GameWin += OnGameWin;
-        //OnPlayButtonClick();
-        //Time.timeScale = 0;
         _winnerScreen.Close();
+        _endGameScreen.Close();
     }
 
     private void OnPlayButtonClick()

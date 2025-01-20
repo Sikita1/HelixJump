@@ -138,6 +138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1128449205871092701}
   - component: {fileID: 7277586666350702037}
+  - component: {fileID: 3710979653277180716}
   m_Layer: 0
   m_Name: SpawnPlatform
   m_TagString: Untagged
@@ -185,6 +186,20 @@ MonoBehaviour:
   _bounceRadius: 50
   _ball: {fileID: 717599502456096996, guid: 34a0a227e5bd9e34fb3b9fea7988fb52, type: 3}
   _spawnPoint: {fileID: 3902130084930125802}
+--- !u!64 &3710979653277180716
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352088080732453223}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &2305179515985051560
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +224,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2305179515985051560}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4, z: -2}
+  m_LocalPosition: {x: 0, y: 2, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

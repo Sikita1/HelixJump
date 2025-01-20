@@ -1,6 +1,5 @@
 using UnityEngine;
 using DG.Tweening;
-using Assets.Scripts.Extensions;
 using System.Collections;
 
 [RequireComponent(typeof(Rigidbody))]
