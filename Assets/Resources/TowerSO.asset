@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Beam>k__BackingField: {fileID: 6882927610479811211, guid: 458c41835dae7634eaac2daaea0b0959, type: 3}
   <PlatformAdditionalScale>k__BackingField: 1
-  <PlatformCount>k__BackingField: 10
+  <PlatformCount>k__BackingField: 1

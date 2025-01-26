@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: be68ca5deb0789942a59f864f1881990
+guid: 72e124a9fb8555e4d927ee93f4448a54
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,12 +33,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -115,7 +115,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 128
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 1
@@ -129,22 +129,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pngwing.com (6)_5
+      name: fonPanel_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 3
-        width: 980
-        height: 853
+        x: 40
+        y: 17
+        width: 2418
+        height: 1066
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 249, y: 0, z: 247, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ed76a9e91604c84eb986a6183f4f581
-      internalID: -1287731926
+      spriteID: 2567b3ef2ac82404ba7884b424b3b1e3
+      internalID: -236063579
       vertices: []
       indices: 
       edges: []
@@ -152,7 +152,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 1e18d80e1c08f9844ac2591fcd3b952c
     internalID: 0
     vertices: []
     indices: 
@@ -160,13 +160,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      pngwing.com (6)_6: 1971963096
-      pngwing.com (6)_0: -2052826337
-      pngwing.com (6)_2: 2064795294
-      pngwing.com (6)_1: -2067946908
-      pngwing.com (6)_3: -1888952179
-      pngwing.com (6)_5: -1287731926
-      pngwing.com (6)_4: 181332581
+      fonPanel_1: -236063579
+      fonPanel_2: -828771607
+      fonPanel_0: -189707235
+      fonPanel_3: -1855207547
+      fonPanel_4: -454974881
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

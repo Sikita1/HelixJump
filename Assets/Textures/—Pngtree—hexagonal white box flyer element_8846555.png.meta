@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: be68ca5deb0789942a59f864f1881990
+guid: 35de88ca32cf5014c9d89c684d7c0fbf
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,12 +33,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -115,7 +115,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 128
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: 50
     textureCompression: 1
@@ -129,22 +129,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pngwing.com (6)_5
+      name: "\u2014Pngtree\u2014hexagonal white box flyer element_8846555_5"
       rect:
         serializedVersion: 2
-        x: 0
-        y: 3
-        width: 980
-        height: 853
+        x: 192
+        y: 350
+        width: 2111
+        height: 1843
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 249, y: 0, z: 247, w: 0}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ed76a9e91604c84eb986a6183f4f581
-      internalID: -1287731926
+      spriteID: c35f8c291b1d25f40b48926c04e730b7
+      internalID: -1039569835
       vertices: []
       indices: 
       edges: []
@@ -160,13 +160,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      pngwing.com (6)_6: 1971963096
-      pngwing.com (6)_0: -2052826337
-      pngwing.com (6)_2: 2064795294
-      pngwing.com (6)_1: -2067946908
-      pngwing.com (6)_3: -1888952179
-      pngwing.com (6)_5: -1287731926
-      pngwing.com (6)_4: 181332581
+      "\u2014Pngtree\u2014hexagonal white box flyer element_8846555_0": -1659462548
+      "\u2014Pngtree\u2014hexagonal white box flyer element_8846555_3": 1628168790
+      "\u2014Pngtree\u2014hexagonal white box flyer element_8846555_5": -1039569835
+      "\u2014Pngtree\u2014hexagonal white box flyer element_8846555_8": 949922679
+      "\u2014Pngtree\u2014hexagonal white box flyer element_8846555_9": 804292065
+      "\u2014Pngtree\u2014hexagonal white box flyer element_8846555_4": -1640498117
+      "\u2014Pngtree\u2014hexagonal white box flyer element_8846555_2": 1739848732
+      "\u2014Pngtree\u2014hexagonal white box flyer element_8846555_11": -823557823
+      "\u2014Pngtree\u2014hexagonal white box flyer element_8846555_7": -1025117152
+      "\u2014Pngtree\u2014hexagonal white box flyer element_8846555_10": 2131401375
+      "\u2014Pngtree\u2014hexagonal white box flyer element_8846555_6": -353672314
+      "\u2014Pngtree\u2014hexagonal white box flyer element_8846555_1": -472674270
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
