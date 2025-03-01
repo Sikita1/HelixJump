@@ -24,6 +24,7 @@ MonoBehaviour:
     compressionFormat: 0
     decompressionFallback: 0
     autoGraphicsAPI: 1
+    minimalCodeCompression: 1
     dataCaching: 1
     colorSpace: 0
     archivingBuild: 1
