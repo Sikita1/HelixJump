@@ -4,6 +4,7 @@ public class EndGameScreen : Window
 {
     public event Action RestartButtonClicked;
     public event Action ReturnButtonClicked;
+    public event Action CloseButtonClicked;
 
     public override void Close()
     {
@@ -31,5 +32,10 @@ public class EndGameScreen : Window
     protected override void OnButtonReturnClick()
     {
         ReturnButtonClicked?.Invoke();
+    }
+
+    protected override void OnCloseButtonClick()
+    {
+        CloseButtonClicked?.Invoke();
     }
 }

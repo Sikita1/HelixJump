@@ -7,6 +7,8 @@ using YG;
 public class Game : MonoBehaviour
 {
     private const string SaveKeyScene = "saveScene";
+    private const string CoinRewardForAdvertising = "0";
+    private const string ToBeResurrectedForPublicity = "1";
 
     [SerializeField] private EndGameScreen _endGameScreen;
     [SerializeField] private WinnerScreen _winnerScreen;
@@ -19,6 +21,8 @@ public class Game : MonoBehaviour
     [SerializeField] private PanelStartLevel _startLevel;
     [SerializeField] private TMP_Text _text;
 
+    [SerializeField] private Health _health;
+
     private TowerBuilder _towerBuilder;
     private Coroutine _coroutine;
 
@@ -27,7 +31,11 @@ public class Game : MonoBehaviour
     public int CurrentScene = 1;
 
     private WaitForSecondsRealtime _wait;
+    private WaitForSecondsRealtime _wait4;
+    private WaitForSecondsRealtime _wait05;
     private float _delay = 3f;
+    private float _delay4 = 4f;
+    private float _delay05 = 0.5f;
 
     public Mouse Mouse => _towerBuilder.Mouse;
     public int MaxLevelCount => _towerBuilder.MaxLevelIndex;
@@ -36,8 +44,10 @@ public class Game : MonoBehaviour
     {
         _winnerScreen.PlayButtonClicked += OnPlayButtonClick;
         _winnerScreen.GetRewardClicked += OnGetRewardButtonClick;
+        _winnerScreen.CloseButtonClicked += OnCloseButtonClicked;
         _endGameScreen.RestartButtonClicked += OnRestartButtonClick;
         _endGameScreen.ReturnButtonClicked += OnReturnButtonClick;
+        _endGameScreen.CloseButtonClicked += OnCloseButtonClicked;
         _towerBuilder.Mouse.GameWin += OnGameWin;
         _towerBuilder.Mouse.GameOver += OnGameOver;
     }
@@ -45,9 +55,11 @@ public class Game : MonoBehaviour
     private void OnDisable()
     {
         _winnerScreen.PlayButtonClicked -= OnPlayButtonClick;
-        _winnerScreen.GetRewardClicked += OnGetRewardButtonClick;
+        _winnerScreen.GetRewardClicked -= OnGetRewardButtonClick;
+        _winnerScreen.CloseButtonClicked -= OnCloseButtonClicked;
         _endGameScreen.RestartButtonClicked -= OnRestartButtonClick;
         _endGameScreen.ReturnButtonClicked -= OnReturnButtonClick;
+        _endGameScreen.CloseButtonClicked -= OnCloseButtonClicked;
         _towerBuilder.Mouse.GameWin -= OnGameWin;
         _towerBuilder.Mouse.GameOver -= OnGameOver;
     }
@@ -58,6 +70,9 @@ public class Game : MonoBehaviour
         _towerBuilder.Build(transform, _mouseTracking);
 
         _wait = new WaitForSecondsRealtime(_delay);
+        _wait4 = new WaitForSecondsRealtime(_delay4);
+        _wait05 = new WaitForSecondsRealtime(_delay05);
+
     }
 
     private void Start()
@@ -76,6 +91,12 @@ public class Game : MonoBehaviour
         _coroutine = StartCoroutine(PlayButtonClick());
     }
 
+    private void OnCloseButtonClicked()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(0);
+    }
+
     private IEnumerator PlayButtonClick()
     {
         _rewardMeneger.RewardPileOfCoin();
@@ -89,8 +110,10 @@ public class Game : MonoBehaviour
 
     private void OnRestartButtonClick()
     {
-        _endGameScreen.Close();
-        StartGame();
+        YG2.RewardedAdvShow(ToBeResurrectedForPublicity, () =>
+        {
+            ContinueLevel();
+        });
     }
 
     private void OnReturnButtonClick()
@@ -100,7 +123,7 @@ public class Game : MonoBehaviour
 
     private void OnGetRewardButtonClick()
     {
-        YG2.RewardedAdvShow("0", () =>
+        YG2.RewardedAdvShow(CoinRewardForAdvertising, () =>
         {
             if (_coroutine != null)
                 StopCoroutine(RewardButtonClick());
@@ -135,6 +158,8 @@ public class Game : MonoBehaviour
         _progress.gameObject.SetActive(false);
         Time.timeScale = 0f;
         _endGameScreen.Open();
+
+        _health.TakeLife(1);
     }
 
     private void StartGame()
@@ -148,11 +173,18 @@ public class Game : MonoBehaviour
     {
         if (_coin.CurrentCount >= price)
         {
-            _endGameScreen.Close();
             _coin.TakeAway(price);
-            Time.timeScale = 1f;
-            _progress.gameObject.SetActive(true);
+            ContinueLevel();
         }
+    }
+
+    private void ContinueLevel()
+    {
+        _endGameScreen.Close();
+        Time.timeScale = 1f;
+        _progress.gameObject.SetActive(true);
+
+        _health.Add(1);
     }
 
     private int LoadNumberScene()
@@ -183,11 +215,12 @@ public class Game : MonoBehaviour
         _text.text = MaxLevelCount.ToString();
         StartCoroutine(FadeAlpha(0, 1, 0.5f));
 
-        yield return new WaitForSecondsRealtime(4f);
+        yield return _wait4;
 
         StartCoroutine(FadeAlpha(1, 0, 0.5f));
 
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return _wait05;
+
         _startLevel.gameObject.SetActive(false);
     }
 

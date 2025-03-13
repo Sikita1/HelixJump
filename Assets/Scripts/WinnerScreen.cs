@@ -4,6 +4,7 @@ public class WinnerScreen : Window
 {
     public event Action PlayButtonClicked;
     public event Action GetRewardClicked;
+    public event Action CloseButtonClicked;
 
     public override void Close()
     {
@@ -35,5 +36,10 @@ public class WinnerScreen : Window
         GetRewardClicked?.Invoke();
         RestartButton.interactable = false;
         ActionButton.interactable = false;
+    }
+
+    protected override void OnCloseButtonClick()
+    {
+        CloseButtonClicked?.Invoke();
     }
 }

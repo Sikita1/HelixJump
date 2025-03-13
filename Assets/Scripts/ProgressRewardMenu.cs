@@ -11,7 +11,7 @@ public class ProgressRewardMenu : MonoBehaviour
     private int _currentValue;
 
     private int _reward = 100;
-    private int _targetValue = 3;
+    private int _targetValue = 10;
 
     private void Start()
     {
