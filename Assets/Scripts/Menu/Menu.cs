@@ -12,6 +12,8 @@ public class Menu : MonoBehaviour
     [SerializeField] private TMP_Text _previousLevel;
     [SerializeField] private TMP_Text _previousLevel1;
 
+    [SerializeField] private Energy _health;
+
     private int _currentNumberScene;
 
     private void Awake()
@@ -31,7 +33,8 @@ public class Menu : MonoBehaviour
 
     public void StartLevel()
     {
-        SceneManager.LoadScene(1);
+        if(_health.CurrentEnergy > 0)
+            SceneManager.LoadScene(1);
     }
 
     private int LoadScene()

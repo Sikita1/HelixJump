@@ -9,6 +9,7 @@ public class WinnerScreen : Window
     public override void Close()
     {
         gameObject.SetActive(false);
+        ParticleSystem.Stop();
         WindowGroup.alpha = 0f;
         RestartButton.interactable = false;
         ActionButton.interactable = false;
@@ -18,6 +19,7 @@ public class WinnerScreen : Window
     public override void Open()
     {
         CommonPanel.gameObject.SetActive(true);
+        ParticleSystem.Play();
         gameObject.SetActive(true);
         WindowGroup.alpha = 1f;
         RestartButton.interactable = true;

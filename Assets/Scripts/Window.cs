@@ -10,6 +10,8 @@ public abstract class Window : MonoBehaviour
 
     [SerializeField] private CommonPanel _commonPanel;
 
+    [SerializeField] private ParticleSystem _particleSystem;
+
     protected CanvasGroup WindowGroup =>
         _windowGroup;
     protected Button RestartButton =>
@@ -20,6 +22,9 @@ public abstract class Window : MonoBehaviour
         _closeButton;
     protected CommonPanel CommonPanel =>
         _commonPanel;
+
+    protected ParticleSystem ParticleSystem =>
+        _particleSystem;
 
     private void OnEnable()
     {

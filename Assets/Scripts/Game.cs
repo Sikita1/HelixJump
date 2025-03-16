@@ -21,7 +21,8 @@ public class Game : MonoBehaviour
     [SerializeField] private PanelStartLevel _startLevel;
     [SerializeField] private TMP_Text _text;
 
-    [SerializeField] private Health _health;
+    [SerializeField] private Energy _health;
+    //[SerializeField] private UnscaledTimer _timer;
 
     private TowerBuilder _towerBuilder;
     private Coroutine _coroutine;
@@ -159,7 +160,7 @@ public class Game : MonoBehaviour
         Time.timeScale = 0f;
         _endGameScreen.Open();
 
-        _health.TakeLife(1);
+        _health.TakeLife();
     }
 
     private void StartGame()

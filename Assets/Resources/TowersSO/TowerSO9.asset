@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10611db4bfc1f384d94374df0e0b109d, type: 3}
+  m_Name: TowerSO9
+  m_EditorClassIdentifier: 
+  <Beam>k__BackingField: {fileID: 6882927610479811211, guid: 458c41835dae7634eaac2daaea0b0959, type: 3}
+  <PlatformAdditionalScale>k__BackingField: 1
+  <PlatformCount>k__BackingField: 1
+  <Level>k__BackingField: 9
+  <PlatformSO>k__BackingField: {fileID: 11400000, guid: d2ff8260351682f4a96f7b8c40f88b48, type: 2}

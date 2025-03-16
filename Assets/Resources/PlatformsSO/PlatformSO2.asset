@@ -15,5 +15,4 @@ MonoBehaviour:
   <FinishPlatform>k__BackingField: {fileID: 8040225851158259098, guid: 6e5cca2a366dc0e4287f19de997a6280, type: 3}
   <SpawnPlatform>k__BackingField: {fileID: 7277586666350702037, guid: 80427b9cbf3c416459a62138248d56c5, type: 3}
   <Platforms>k__BackingField:
-  - {fileID: -46587969136876113, guid: 3c12d9a1520da9f45b53100ad3eef1d1, type: 3}
-  - {fileID: -46587969136876113, guid: ab54ff4c0317aa141920ecfe4ce4803b, type: 3}
+  - {fileID: -46587969136876113, guid: 81d0f6731163fb0489dd95166c76293a, type: 3}

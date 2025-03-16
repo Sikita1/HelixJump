@@ -9,7 +9,9 @@
     [System.Serializable]
     public class TimerData
     {
-        public float CurrentTime;
-        public string LastExitTime;
+        public int CurrentEnergy;
+
+        public string NextEnergyTime;
+        public string LastAddedTime;
     }
 }

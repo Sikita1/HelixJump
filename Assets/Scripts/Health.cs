@@ -4,14 +4,12 @@ public class Health : MonoBehaviour
 {
     private const string SaveKeyHealth = "saveHealth";
 
-    [SerializeField] private UnscaledTimer _timer;
+    //[SerializeField] private UnscaledTimer _timer;
     [SerializeField] private HealthView _healthView;
 
     private int _maxValue = 5;
     private int _minValue = 0;
     //private string _lastHealthLossTimeString;
-
-    private float _healthRegenRate = 50f;
 
     //private Coroutine _coroutine;
     //private WaitForSecondsRealtime _wait;
@@ -20,15 +18,15 @@ public class Health : MonoBehaviour
 
     public int CurrentHealth { get; private set; } = 5;
 
-    private void OnEnable()
-    {
-        _timer.TimerExpired += OnTimerExpired;
-    }
+    //private void OnEnable()
+    //{
+    //    _timer.TimerExpired += OnTimerExpired;
+    //}
 
-    private void OnDisable()
-    {
-        _timer.TimerExpired -= OnTimerExpired;
-    }
+    //private void OnDisable()
+    //{
+    //    _timer.TimerExpired -= OnTimerExpired;
+    //}
 
     //private void Awake()
     //{
@@ -39,17 +37,12 @@ public class Health : MonoBehaviour
     {
         Load();
 
-        if (CurrentHealth < _maxValue)
-            StartTimer(_healthRegenRate);
-        else
-            _timer.StopTimer();
+        //if (CurrentHealth < _maxValue)
+        //    StartTimer();
+        //else
+        //    _timer.StopTimer();
 
         _healthView.ShowHealth(CurrentHealth);
-
-        //if (_coroutine != null)
-        //    StopCoroutine(ExecuteAfterTime());
-
-        //_coroutine = StartCoroutine(ExecuteAfterTime());
     }
 
     public void Add(int count)
@@ -57,14 +50,18 @@ public class Health : MonoBehaviour
         Load();
         CurrentHealth = Mathf.Min(_maxValue, CurrentHealth + count);
         Save();
+
+        _healthView.ShowHealth(CurrentHealth);
     }
 
     public void TakeLife(int damage)
     {
         Load();
         CurrentHealth = Mathf.Max(_minValue, CurrentHealth - damage);
-        StartTimer(_healthRegenRate);
+        //StartTimer();
         Save();
+
+        _healthView.ShowHealth(CurrentHealth);
     }
 
     private void OnTimerExpired()
@@ -74,19 +71,19 @@ public class Health : MonoBehaviour
 
         Save();
 
-        if (CurrentHealth < _maxValue)
-            StartTimer(_healthRegenRate);
+        //if (CurrentHealth < _maxValue)
+        //    StartTimer();
     }
 
-    private void StartTimer(float time)
-    {
-        _timer.StartTimer(time);
-    }
+    //private void StartTimer()
+    //{
+    //    _timer.StartTimer();
+    //}
 
-    private void StopTimer()
-    {
-        _timer.StopTimer();
-    }
+    //private void StopTimer()
+    //{
+    //    _timer.StopTimer();
+    //}
 
     private void Save()
     {
@@ -110,7 +107,6 @@ public class Health : MonoBehaviour
         var data = new SaveData.HealthController()
         {
             Health = CurrentHealth,
-            //LastHealthLossTimeString = _lastHealthLossTimeString
         };
 
         return data;
