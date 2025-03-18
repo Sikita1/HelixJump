@@ -73,7 +73,6 @@ public class Game : MonoBehaviour
         _wait = new WaitForSecondsRealtime(_delay);
         _wait4 = new WaitForSecondsRealtime(_delay4);
         _wait05 = new WaitForSecondsRealtime(_delay05);
-
     }
 
     private void Start()
@@ -95,7 +94,7 @@ public class Game : MonoBehaviour
     private void OnCloseButtonClicked()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     private IEnumerator PlayButtonClick()

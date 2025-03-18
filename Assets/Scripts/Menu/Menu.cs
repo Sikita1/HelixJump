@@ -34,7 +34,7 @@ public class Menu : MonoBehaviour
     public void StartLevel()
     {
         if(_health.CurrentEnergy > 0)
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(0);
     }
 
     private int LoadScene()
