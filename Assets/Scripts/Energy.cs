@@ -1,7 +1,8 @@
-using System.Collections;
 using UnityEngine;
-using System;
 using TMPro;
+using System;
+using System.Collections;
+using YG;
 
 public class Energy : MonoBehaviour
 {
@@ -11,18 +12,15 @@ public class Energy : MonoBehaviour
 
     [SerializeField] private TMP_Text _textEnergy;
     [SerializeField] private TMP_Text _textTimer;
-    [SerializeField] private int _maxEnergy;
-
-    //[SerializeField] private HealthView _healthView;
+    [SerializeField] private int _maxEnergy = 5;
 
     private DateTime _nextEnergyTime;
     private DateTime _lastAddedTime;
 
-    private int _restoreDuration = 20;
+    private int _restoreDuration = 180;
     private int _maxValue = 5;
 
     private bool _isRestoring = false;
-
     private Coroutine _coroutine;
 
     public int CurrentEnergy { get; private set; } = 5;
@@ -30,6 +28,7 @@ public class Energy : MonoBehaviour
     private void Start()
     {
         Load();
+        CalculateEnergyAfterOffline();
 
         if (_coroutine != null)
             StopCoroutine(_coroutine);
@@ -40,6 +39,7 @@ public class Energy : MonoBehaviour
     private void OnEnable()
     {
         Load();
+        CalculateEnergyAfterOffline();
     }
 
     private void OnDisable()
@@ -50,6 +50,31 @@ public class Energy : MonoBehaviour
     private void OnApplicationQuit()
     {
         Save();
+    }
+
+    private void CalculateEnergyAfterOffline()
+    {
+        if (CurrentEnergy >= _maxEnergy)
+            return;
+
+        DateTime currentTime = DateTime.Now;
+        DateTime storedNextEnergyTime = _nextEnergyTime;
+
+        if (currentTime > storedNextEnergyTime)
+        {
+            TimeSpan timePassed = currentTime - storedNextEnergyTime;
+            int energyToAdd = (int)(timePassed.TotalSeconds / _restoreDuration);
+
+            if (energyToAdd > 0)
+            {
+                CurrentEnergy = Mathf.Min(_maxEnergy, CurrentEnergy + energyToAdd);
+
+                _lastAddedTime = currentTime;
+                _nextEnergyTime = storedNextEnergyTime.AddSeconds(energyToAdd * _restoreDuration);
+
+                Save();
+            }
+        }
     }
 
     public void TakeLife()
@@ -82,7 +107,6 @@ public class Energy : MonoBehaviour
 
         UpdateTimer();
         UpdateEnergy();
-        //_healthView.ShowHealth(CurrentEnergy);
     }
 
     private IEnumerator RestoreRoutine()
@@ -130,16 +154,23 @@ public class Energy : MonoBehaviour
         _isRestoring = false;
     }
 
-    private DateTime AddDuration(DateTime time, int duration)
+    private DateTime AddDuration(DateTime time, int duration) =>
+        time.AddSeconds(duration);
+
+    private void IdentifyingRightLanguageInText(string language, string text)
     {
-        return time.AddSeconds(duration);
+        if (YG2.lang == language)
+            _textTimer.text = text;
     }
 
     private void UpdateTimer()
     {
         if (CurrentEnergy >= _maxEnergy)
         {
-            _textTimer.text = "FULL";
+            IdentifyingRightLanguageInText("ru", "ְּÊׁ.");
+            IdentifyingRightLanguageInText("en", "FULL");
+            IdentifyingRightLanguageInText("tr", "TAM");
+
             return;
         }
 

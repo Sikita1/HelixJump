@@ -22,7 +22,8 @@ public class Game : MonoBehaviour
     [SerializeField] private TMP_Text _text;
 
     [SerializeField] private Energy _health;
-    //[SerializeField] private UnscaledTimer _timer;
+
+    [SerializeField] private ParticleSystem _confetty;
 
     private TowerBuilder _towerBuilder;
     private Coroutine _coroutine;
@@ -51,6 +52,7 @@ public class Game : MonoBehaviour
         _endGameScreen.CloseButtonClicked += OnCloseButtonClicked;
         _towerBuilder.Mouse.GameWin += OnGameWin;
         _towerBuilder.Mouse.GameOver += OnGameOver;
+        YG2.onCloseInterAdv += OnCloseInterAdv;
     }
 
     private void OnDisable()
@@ -63,6 +65,7 @@ public class Game : MonoBehaviour
         _endGameScreen.CloseButtonClicked -= OnCloseButtonClicked;
         _towerBuilder.Mouse.GameWin -= OnGameWin;
         _towerBuilder.Mouse.GameOver -= OnGameOver;
+        YG2.onCloseInterAdv -= OnCloseInterAdv;
     }
 
     private void Awake()
@@ -85,19 +88,36 @@ public class Game : MonoBehaviour
 
     private void OnPlayButtonClick()
     {
-        if (_coroutine != null)
-            StopCoroutine(PlayButtonClick());
-
-        _coroutine = StartCoroutine(PlayButtonClick());
+        PlayButtonClick();
     }
 
     private void OnCloseButtonClicked()
     {
+        YG2.InterstitialAdvShow();
+
         Time.timeScale = 1f;
         SceneManager.LoadScene(1);
     }
 
-    private IEnumerator PlayButtonClick()
+    private void PlayButtonClick()
+    {
+        if (YG2.isTimerAdvCompleted)
+            YG2.InterstitialAdvShow();
+        else
+            OnCloseInterAdv();
+    }
+
+    private void OnCloseInterAdv()
+    {
+        if (_coroutine != null)
+            StopCoroutine(PlayButton());
+
+        _coroutine = StartCoroutine(PlayButton());
+
+        Debug.Log("показана");
+    }
+
+    private IEnumerator PlayButton()
     {
         _rewardMeneger.RewardPileOfCoin();
         _coin.Add(20);
@@ -105,6 +125,7 @@ public class Game : MonoBehaviour
         yield return _wait;
 
         _winnerScreen.Close();
+        _confetty.Stop();
         StartGame();
     }
 
@@ -140,6 +161,8 @@ public class Game : MonoBehaviour
         yield return _wait;
 
         _winnerScreen.Close();
+        _confetty.Stop();
+
         StartGame();
     }
 
@@ -151,6 +174,8 @@ public class Game : MonoBehaviour
         _progress.gameObject.SetActive(false);
         Time.timeScale = 0f;
         _winnerScreen.Open();
+
+        _confetty.Play();
     }
 
     private void OnGameOver()
@@ -165,7 +190,7 @@ public class Game : MonoBehaviour
     private void StartGame()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
         _progress.gameObject.SetActive(true);
     }
 
@@ -222,6 +247,7 @@ public class Game : MonoBehaviour
         yield return _wait05;
 
         _startLevel.gameObject.SetActive(false);
+        _progress.gameObject.SetActive(true);
     }
 
     private IEnumerator FadeAlpha(float startAlpha, float targetAlpha, float duration)

@@ -4,7 +4,7 @@ using UnityEngine;
 public class TowerRotator : MonoBehaviour
 {
     [SerializeField] private float _rotationSpeed = 300f;
-    [SerializeField] private float _rotationSpeedMobile = 50f;
+    [SerializeField] private float _rotationSpeedMobile = 2f;
 
     private void Update()
     {
@@ -18,9 +18,9 @@ public class TowerRotator : MonoBehaviour
 
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
         {
-            float XDeltaPosition = Input.GetTouch(0).deltaPosition.x;
+            float xDeltaPosition = Input.GetTouch(0).deltaPosition.x;
             transform.Rotate(transform.position.x,
-                             -XDeltaPosition * _rotationSpeedMobile * Time.deltaTime,
+                             xDeltaPosition * _rotationSpeedMobile * Time.deltaTime,
                              transform.position.z);
         }
     }

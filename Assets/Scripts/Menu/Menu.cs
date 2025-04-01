@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using YG;
 
 public class Menu : MonoBehaviour
 {
@@ -13,6 +12,8 @@ public class Menu : MonoBehaviour
     [SerializeField] private TMP_Text _previousLevel1;
 
     [SerializeField] private Energy _health;
+
+    [SerializeField] private ButtonExtraHeart _buttonExtra;
 
     private int _currentNumberScene;
 
@@ -26,15 +27,12 @@ public class Menu : MonoBehaviour
         _previousLevel1.text = (_currentNumberScene - 2).ToString();
     }
 
-    private void Start()
-    {
-        YG2.InterstitialAdvShow();
-    }
-
     public void StartLevel()
     {
-        if(_health.CurrentEnergy > 0)
+        if (_health.CurrentEnergy > 0)
             SceneManager.LoadScene(0);
+        else
+            _buttonExtra.Open();
     }
 
     private int LoadScene()
